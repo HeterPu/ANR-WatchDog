@@ -92,6 +92,7 @@ public class ANRWatchDog extends Thread {
     private boolean _ignoreDebugger = false;
 
     private volatile long _tick = 0;
+    private volatile long _tick_threshold;
     private volatile boolean _reported = false;
 
     private final Runnable _ticker = new Runnable() {
@@ -115,10 +116,14 @@ public class ANRWatchDog extends Thread {
      *                        It is therefore the maximum time the UI may freeze before being reported as ANR.
      */
     public ANRWatchDog(int timeoutInterval) {
-        super();
-        _timeoutInterval = timeoutInterval;
+        this(timeoutInterval,DEFAULT_ANR_TIMEOUT);
     }
 
+    public ANRWatchDog(int timeoutInterval,int threshold){
+        super();
+        _timeoutInterval = timeoutInterval;
+        _tick_threshold = threshold;
+    }
     /**
      * @return The interval the WatchDog
      */
@@ -266,7 +271,7 @@ public class ANRWatchDog extends Thread {
             }
 
             // If the main thread has not handled _ticker, it is blocked. ANR.
-            if (_tick != 0 && !_reported) {
+            if (_tick >= _tick_threshold && !_reported) {
                 //noinspection ConstantConditions
                 if (!_ignoreDebugger && (Debug.isDebuggerConnected() || Debug.waitingForDebugger())) {
                     Log.w("ANRWatchdog", "An ANR was detected but ignored because the debugger is connected (you can prevent this with setIgnoreDebugger(true))");

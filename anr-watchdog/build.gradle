@@ -48,53 +48,53 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            pom.project {
-                name 'ANR-Watchdog'
-                packaging 'jar'
-                artifactId 'anrwatchdog'
-                description 'A simple watchdog that detects Android ANR (Application Not Responding) error and throws a meaningful exception'
-                url 'https://github.com/SalomonBrys/ANR-WatchDog'
-
-                licenses {
-                    license {
-                        name 'MIT'
-                        url 'http://opensource.org/licenses/MIT'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'salomonbrys'
-                        name 'Salomon BRYS'
-                        email 'salomon.brys@gmail.com'
-                    }
-                }
-
-                scm {
-                    url 'https://github.com/SalomonBrys/ANR-WatchDog'
-                    connection 'scm:git:https://github.com/SalomonBrys/ANR-WatchDog.git'
-                    developerConnection 'scm:git:git@github.com:SalomonBrys/ANR-WatchDog.git'
-                    tag 'HEAD'
-                }
-
-                issueManagement {
-                    system 'GitHub Issues'
-                    url 'https://github.com/SalomonBrys/ANR-WatchDog/issues'
-                }
-            }
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            pom.project {
+//                name 'ANR-Watchdog'
+//                packaging 'jar'
+//                artifactId 'anrwatchdog'
+//                description 'A simple watchdog that detects Android ANR (Application Not Responding) error and throws a meaningful exception'
+//                url 'https://github.com/SalomonBrys/ANR-WatchDog'
+//
+//                licenses {
+//                    license {
+//                        name 'MIT'
+//                        url 'http://opensource.org/licenses/MIT'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'salomonbrys'
+//                        name 'Salomon BRYS'
+//                        email 'salomon.brys@gmail.com'
+//                    }
+//                }
+//
+//                scm {
+//                    url 'https://github.com/SalomonBrys/ANR-WatchDog'
+//                    connection 'scm:git:https://github.com/SalomonBrys/ANR-WatchDog.git'
+//                    developerConnection 'scm:git:git@github.com:SalomonBrys/ANR-WatchDog.git'
+//                    tag 'HEAD'
+//                }
+//
+//                issueManagement {
+//                    system 'GitHub Issues'
+//                    url 'https://github.com/SalomonBrys/ANR-WatchDog/issues'
+//                }
+//            }
+//        }
+//    }
+//}
